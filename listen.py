@@ -4,7 +4,7 @@ import telepot
 import datetime
 from pprint import pprint
 from telepot.loop import MessageLoop
-from gpiozero import MotionSensor
+# from gpiozero import MotionSensor
 
 import netifaces as ni
 
@@ -40,17 +40,17 @@ def handle(msg):
     if content_type == 'text':
         process_command(msg, content_type, chat_type, chat_id)
 
-def watch(chat_id):
-    pir = MotionSensor(4) #4 = il pin a cui è collegato sulla board madre
-    bot.sendMessage(chat_id, '[Sensor Armed]')
-    while True:
-        pir.wait_for_motion()
-        #print("Motion detected at {}".format(datetime.datetime.now()))
-        bot.sendMessage(chat_id, "Rilevato movimento: {}".format(datetime.datetime.now()))
-        time.sleep(30)
+# def watch(chat_id):
+#     pir = MotionSensor(4) #4 = il pin a cui è collegato sulla board madre
+#     bot.sendMessage(chat_id, '[Sensor Armed]')
+#     while True:
+#         pir.wait_for_motion()
+#         #print("Motion detected at {}".format(datetime.datetime.now()))
+#         bot.sendMessage(chat_id, "Rilevato movimento: {}".format(datetime.datetime.now()))
+#         time.sleep(30)
 
-def arm(chat_id):
-    watch(chat_id)
+# def arm(chat_id):
+#     watch(chat_id)
 
 def main():
     MessageLoop(bot, handle).run_as_thread()
